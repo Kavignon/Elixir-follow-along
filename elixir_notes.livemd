@@ -72,18 +72,15 @@ So moving on, I was looking around in the HexDocs to find out what I could do to
 So let's look at this new implementation:
 
 ```elixir
-defmodule FlattenArray2 do
-  @doc """
-    Accept a list and return the list flattened without nil values.
-  """
+# Display the code
+code = File.read!("lib/exercism/flatten_array_v1.ex")
+IO.puts("### Code from flatten_array_v1.ex ###\n\n" <> code)
 
-  @spec flatten(list) :: list
-  def flatten(list) do
-    list
-    |> List.flatten()
-    |> Enum.reject(&is_nil/1)
-  end
-end
+# Load the code so we can run it
+Code.require_file("lib/exercism/flatten_array_v1.ex", __DIR__)
+
+# Example function call
+FlattenArrayV1.flatten([1, [2, 3], [4, [5]]])
 ```
 
 An alternative approach that I stumble on through ChatGPT:
