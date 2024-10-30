@@ -1,0 +1,212 @@
+# Exploring full-stack Elixir development
+
+## Day 1
+
+Although this is marked as day one, I've been working on learning Elixir.
+
+I've been going through the following:
+
+* The Elixir track on Exercism (16.4% completion)
+* Solving problems with Elixr on Codewars (currently ranked 8th kyu for Elixir but 3 overall)
+* Going through the 2nd edition of 'Elixir in Action' (Ch.2 50% done)
+
+I am considering entering the Advent of Code 2024 and going through past years to work on my fundamentals in Elixir and expose myself as much as possible.
+
+This LiveBook aims to reflect on what I've learned and discuss the challenges I've faced while learning about what makes Elixir tick. As I'm learning a new language, I can often encounter a hurdle. The issue is that we're doomed to repeat history without reflecting on it. Therefore, I'm embracing a slower approach to exposing myself to Elixir/BEAM along with Phoenix/LiveView if it allows me to be more thorough.
+
+## Exercism exercise - Flatten Array
+
+What's the problem to solve?
+
+The challenge is to take an arbitrarily-deep nested list-like structure and produce a flattened structure without any nil/null values.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Initial approach
+
+```elixir
+defmodule FlattenArray do
+  @doc """
+    Accept a list and return the list flattened without nil values.
+  """
+
+  @spec flatten(list) :: list
+  def flatten(list) do
+    list
+    |> Enum.flat_map(fn x -> x end)
+    |> Enum.reject(&is_nil/1)
+  end
+end
+```
+
+So this approach doesn't seem to work.
+
+I was trying to leverage flat_map to remove nested lists within list and then reject was supposed to remove nil entries in the flatten list.
+
+Here are a few observations:
+
+Input: [[[]]]
+generated:  [[]]
+expected: []
+
+Input: []
+generated: []
+expected: []
+
+Applies a function to each element in the list and flattens only one level so that it won’t flatten deeply nested lists.
+
+I discovered a [flatten function](https://hexdocs.pm/elixir/List.html#flatten/2) offered in the List module.
+
+So let's look at this new implementation:
+
+```elixir
+defmodule FlattenArray2 do
+  @doc """
+    Accept a list and return the list flattened without nil values.
+  """
+
+  @spec flatten(list) :: list
+  def flatten(list) do
+    list
+    |> List.flatten()
+    |> Enum.reject(&is_nil/1)
+  end
+end
+```
+
+An alternative approach that I stumble on through ChatGPT:
+
+By thinking of folding my list upon itself with [foldr()](https://hexdocs.pm/elixir/List.html#foldr/3).
+
+* Since List.foldr/3 processes the list from right to left, the final list order will match the original list without reversing.
+* When it encounters a nested list, it flattens that list recursively, appending the flattened sublist to the accumulator.
+* nil values are simply ignored by returning the accumulator acc as-is for them.
+
+```elixir
+defmodule FlattenArray3 do
+  @doc """
+    Accept a list and return the list flattened without nil values.
+  """
+
+  @spec flatten(list) :: list
+  def flatten(list) do
+    List.foldr(list, [], fn
+      nil, acc -> acc
+      x, acc when is_list(x) -> flatten(x) ++ acc  # Minimize ++ usage here
+      x, acc -> [x | acc]
+    end)
+  end
+end
+```
+
+## Exercism exercise - Scabble score
+
+The prompt:
+
+Scrabble is a word game where players place letter tiles on a board to form words. Each letter has a value. A word's score is the sum of its letters' values.
+
+Instructions
+Your task is to compute a word's Scrabble score by summing the values of its letters.
+
+Initially, and because I default to it mostly, I was thinking of using a map such as
+
+letter_score = %{ A: 1, B: 3}
+
+But using pattern matching with function clauses would lead to easily grouping letters with the score and pattern matching is fast in Elixir/BEAM.
+
+Once we do have all of these implemented, we need to convert a letter to its score and them sum it up.
+
+```elixir
+defmodule Scrabble do
+  @doc """
+  Calculate the scrabble score for the word.
+  """
+  @spec score(String.t()) :: non_neg_integer
+  def score(word) do
+    word
+    |> String.upcase()
+    |> String.graphemes()
+    |> Enum.map(&letter_score/1)
+    |> Enum.sum()
+  end
+
+  def letter_score(letter) when letter in ~w(A E I O U L N R S T), do: 1
+  def letter_score(letter) when letter in ~w(D G), do: 2
+  def letter_score(letter) when letter in ~w(B C M P), do: 3
+  def letter_score(letter) when letter in ~w(F H V W Y), do: 4
+  def letter_score("K"), do: 5
+  def letter_score(letter) when letter in ~w(J X), do: 8
+  def letter_score(letter) when letter in ~w(Q Z), do: 10
+  def letter_score(_), do: 0
+end
+
+IO.puts(Scrabble.score("Kevin"))
+```
+
+Things I learned about through this challenge:
+
+* How to traverse a string character by character with graphemes()
+* What is a word sigil and using them to make an array of strings on the fly
+
+## Exercism exercise - Nucleotide Count
+
+DNA is a long chain of other chemicals and the most important are the four nucleotides, adenine, cytosine, guanine and thymine. A single DNA chain can contain billions of these four nucleotides and the order in which they occur is important! We call the order of these nucleotides in a bit of DNA a "DNA sequence".
+
+We represent a DNA sequence as an ordered collection of these four nucleotides and a common way to do that is with a string of characters such as "ATTACG" for a DNA sequence of 6 nucleotides. 'A' for adenine, 'C' for cytosine, 'G' for guanine, and 'T' for thymine.
+
+Given a string representing a DNA sequence, count how many of each nucleotide is present. If the string contains characters that aren't A, C, G, or T then it is invalid and you should signal an error.
+
+This exercise went for simplicity. Therefore, we don't have to handle any kind of errors (we can safely assume that the input is valid).
+
+I went in there with the intent that I would only be able to consult the hexdocs to implement this since it should be straightforward. I got it on the 1st try :-)
+
+```elixir
+defmodule NucleotideCount do
+  @nucleotides [?A, ?C, ?G, ?T]
+
+  @doc """
+  Counts individual nucleotides in a DNA strand.
+
+  ## Examples
+
+  iex> NucleotideCount.count(~c"AATAA", ?A)
+  4
+
+  iex> NucleotideCount.count(~c"AATAA", ?T)
+  1
+  """
+  @spec count(charlist(), char()) :: non_neg_integer()
+  def count(strand, nucleotide) do
+    strand
+    |> Enum.filter(fn char -> char == nucleotide end)
+    |> Enum.count()
+  end
+
+  @doc """
+  Returns a summary of counts by nucleotide.
+
+  ## Examples
+
+  iex> NucleotideCount.histogram(~c"AATAA")
+  %{?A => 4, ?T => 1, ?C => 0, ?G => 0}
+  """
+  @spec histogram(charlist()) :: map()
+  def histogram(strand) do
+    @nucleotides
+    |> Enum.map(fn char -> { char, count(strand, char)} end)
+    |> Map.new()
+  end
+end
+
+NucleotideCount.histogram(~c"GATTACA")
+```
+
+## Exercism exercise - Sublist
+
+## Exercism exercise - Triangle
+
+## Exercism exercise - Binary Search
+
+## Exercism exercise - Binary Search Tree
+
+## Exercism exercise - Anagram
