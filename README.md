@@ -36,6 +36,21 @@ In the project root directory, run:
 mix deps.get
 ```
 
+### Install LiveBook dependencies
+
+```bash
+mix do local.rebar --force, local.hex --force
+mix escript.install hex livebook
+```
+
+You will get a warning in the following format:
+
+```
+warning: you must append "/Users/your-user-name/.mix/escripts" to your PATH if you want to invoke escripts by name
+```
+
+For instance, if you're using ZSH as a shell, then you'll use a text editor (i.e. VIM/nano/VS Code) to open your configuration and append that reference to your PATH. Once you're done, [source your shell](https://linuxhandbook.com/source-command/) and I advise to reload it with ```$SHELL```.
+
 ### Running the project
 
 # PickingUp_BEAM
@@ -69,13 +84,21 @@ To explore the notebook with additional code snippets and explanations:
 livebook server
 ```
 
-2. Open the provided URL (usually http://localhost:8080) in your browser.
-3. In Livebook, click Open and select your_project_name.livemd from the repository folder to open the notebook.
+2. Open the provided URL (usually http://localhost:8080?token=yourtokenvalue) in your browser.
+3. In Livebook, click _Open_
+4. Select the option _From storage_ and provide the path to elixir_notes.livemd from the repository folder to open the notebook.
+
+You can also do the following after running ```livebook server```:
+1. Click on _Open_.
+2. Select the option _From URL_ and provide the URL to one of the Elixir livebook notes from the repository such as this [one](https://github.com/Kavignon/Elixir-follow-along/blob/main/elixir_notes.livemd) in _Notebook URL_
+3. Click on _Import_.
 
 The Livebook notebook includes:
 
-- Elixir and Phoenix/LiveView code snippets.
-- Explanations for real-time updates, state management, and other Phoenix features.
+- Elixir snippets
+- References to material used
+- My impressions and the challenges that I overcame
+- Alternatives approaches to a given problem and why I pick one over the other (if any)
 
 ## Project structure
 
