@@ -1,4 +1,4 @@
-defmodule FlattenArray2 do
+defmodule FlattenArrayV2 do
   @doc """
     Accept a list and return the list flattened without nil values.
   """
