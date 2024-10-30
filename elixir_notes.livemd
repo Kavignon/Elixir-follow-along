@@ -6,9 +6,9 @@ Although this is marked as day one, I've been working on learning Elixir.
 
 I've been going through the following:
 
-* The Elixir track on Exercism (16.4% completion)
-* Solving problems with Elixr on Codewars (currently ranked 8th kyu for Elixir but 3 overall)
-* Going through the 2nd edition of 'Elixir in Action' (Ch.2 50% done)
+- The Elixir track on Exercism (16.4% completion)
+- Solving problems with Elixr on Codewars (currently ranked 8th kyu for Elixir but 3 overall)
+- Going through the 2nd edition of 'Elixir in Action' (Ch.2 50% done)
 
 I am considering entering the Advent of Code 2024 and going through past years to work on my fundamentals in Elixir and expose myself as much as possible.
 
@@ -25,37 +25,49 @@ The challenge is to take an arbitrarily-deep nested list-like structure and prod
 Initial approach
 
 ```elixir
-defmodule FlattenArray do
-  @doc """
-    Accept a list and return the list flattened without nil values.
-  """
+# Display the code
+code = File.read!("lib/exercism/flatten_array_v1.ex")
+IO.puts("### Code from flatten_array_v1.ex ###\n\n" <> code)
 
-  @spec flatten(list) :: list
-  def flatten(list) do
-    list
-    |> Enum.flat_map(fn x -> x end)
-    |> Enum.reject(&is_nil/1)
-  end
-end
+# Load the code so we can run it
+Code.require_file("lib/exercism/flatten_array_v1.ex", __DIR__)
+
+# Example function call
+FlattenArrayV1.flatten([1, [2, 3], [4, [5]]])
 ```
 
-So this approach doesn't seem to work.
+So this approach doesn't seem to work. Clearly.
+
+> **Error:** The following error occurred during the test:
+
+```plaintext
+** (Protocol.UndefinedError) protocol Enumerable not implemented for 0 of type Integer. This protocol is implemented for the following type(s): Date.Range, File.Stream, Function, GenEvent.Stream, HashDict, HashSet, IO.Stream, List, Map, MapSet, Range, Stream
+code: assert FlattenArray.flatten([0, 1, 2]) == [0, 1, 2]
+stacktrace:
+  (elixir 1.17.0) lib/enum.ex:1: Enumerable.impl_for!/1
+  (elixir 1.17.0) lib/enum.ex:166: Enumerable.reduce/3
+  (elixir 1.17.0) lib/enum.ex:4423: Enum.reverse/1
+  (elixir 1.17.0) lib/enum.ex:3748: Enum.to_list/1
+  (elixir 1.17.0) lib/enum.ex:4355: Enum.flat_map_list/2
+  (flatten_array 0.1.0) lib/flatten_array.ex:9: FlattenArray.flatten/1
+  test/flatten_array_test.exs:11: (test)
+```
 
 I was trying to leverage flat_map to remove nested lists within list and then reject was supposed to remove nil entries in the flatten list.
 
-Here are a few observations:
+When providing empty nested lists, it wouldn't work either.
 
+```plaintext
 Input: [[[]]]
+
 generated: [[]]
+
 expected: []
+```
 
-Input: []
-generated: []
-expected: []
+That was a misunderstanding of what [flat_map/2](https://hexdocs.pm/elixir/1.12/Enum.html#flat_map/2) was doing as a function. It applies a function to each element in the list and flattens only one level so that it won’t flatten deeply nested lists.
 
-Applies a function to each element in the list and flattens only one level so that it won’t flatten deeply nested lists.
-
-I discovered a [flatten function](https://hexdocs.pm/elixir/List.html#flatten/2) offered in the List module.
+So moving on, I was looking around in the HexDocs to find out what I could do to solve this problem. I discovered a [flatten function](https://hexdocs.pm/elixir/List.html#flatten/2) offered in the List module.
 
 So let's look at this new implementation:
 
@@ -78,9 +90,9 @@ An alternative approach that I stumble on through ChatGPT:
 
 By thinking of folding my list upon itself with [foldr()](https://hexdocs.pm/elixir/List.html#foldr/3).
 
-* Since List.foldr/3 processes the list from right to left, the final list order will match the original list without reversing.
-* When it encounters a nested list, it flattens that list recursively, appending the flattened sublist to the accumulator.
-* nil values are simply ignored by returning the accumulator acc as-is for them.
+- Since List.foldr/3 processes the list from right to left, the final list order will match the original list without reversing.
+- When it encounters a nested list, it flattens that list recursively, appending the flattened sublist to the accumulator.
+- nil values are simply ignored by returning the accumulator acc as-is for them.
 
 ```elixir
 defmodule FlattenArray3 do
@@ -145,8 +157,8 @@ IO.puts(Scrabble.score("Kevin"))
 
 Things I learned about through this challenge:
 
-* How to traverse a string character by character with graphemes()
-* What is a word sigil and using them to make an array of strings on the fly
+- How to traverse a string character by character with graphemes()
+- What is a word sigil and using them to make an array of strings on the fly
 
 ## Exercism exercise - Nucleotide Count
 
