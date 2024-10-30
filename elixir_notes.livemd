@@ -46,7 +46,7 @@ I was trying to leverage flat_map to remove nested lists within list and then re
 Here are a few observations:
 
 Input: [[[]]]
-generated:  [[]]
+generated: [[]]
 expected: []
 
 Input: []
@@ -200,13 +200,3 @@ end
 
 NucleotideCount.histogram(~c"GATTACA")
 ```
-
-## Exercism exercise - Sublist
-
-## Exercism exercise - Triangle
-
-## Exercism exercise - Binary Search
-
-## Exercism exercise - Binary Search Tree
-
-## Exercism exercise - Anagram
