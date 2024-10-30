@@ -81,6 +81,7 @@ The Livebook notebook includes:
 
 Here’s an overview of the repository structure:
 
+```
 elixir-follow-along/
 ├── README.md                # Project documentation
 ├── elixir_notes.livemd  # Livebook with snippets/observations/comments on Elixir
@@ -89,3 +90,4 @@ elixir-follow-along/
 ├── assets/                  # Front-end assets
 ├── mix.exs                  # Mix project file with dependencies
 └── ...
+```
