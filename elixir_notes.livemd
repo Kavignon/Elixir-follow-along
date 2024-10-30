@@ -6,9 +6,9 @@ Although this is marked as day one, I've been working on learning Elixir.
 
 I've been going through the following:
 
-* The Elixir track on Exercism (16.4% completion)
-* Solving problems with Elixr on Codewars (currently ranked 8th kyu for Elixir but 3 overall)
-* Going through the 2nd edition of 'Elixir in Action' (Ch.2 50% done)
+- The Elixir track on Exercism (16.4% completion)
+- Solving problems with Elixr on Codewars (currently ranked 8th kyu for Elixir but 3 overall)
+- Going through the 2nd edition of 'Elixir in Action' (Ch.2 50% done)
 
 I am considering entering the Advent of Code 2024 and going through past years to work on my fundamentals in Elixir and expose myself as much as possible.
 
@@ -72,24 +72,25 @@ So moving on, I was looking around in the HexDocs to find out what I could do to
 So let's look at this new implementation:
 
 ```elixir
-# Display the code
-code = File.read!("lib/exercism/flatten_array_v2.ex")
-IO.puts("### Code from flatten_array_v2.ex ###\n\n" <> code)
+Code.require_file("lib/helpers/file_loading.ex", __DIR__)
+case FileLoading.load("lib/exercism/flatten_array_v2.ex") do
+  :ok ->
+    # Example function call from the loaded file
+    result = FlattenArrayV2.flatten([1, [2, 3], [4, [5]]])
+    IO.inspect(result, label: "Flattened Array Result")
 
-# Load the code so we can run it
-Code.require_file("lib/exercism/flatten_array_v2.ex", __DIR__)
-
-# Example function call
-FlattenArrayV2.flatten([1, [2, 3], [4, [5]]])
+  {:error, message} ->
+    IO.puts("Error: " <> message)
+end
 ```
 
 An alternative approach that I stumble on through ChatGPT:
 
 By thinking of folding my list upon itself with [foldr()](https://hexdocs.pm/elixir/List.html#foldr/3).
 
-* Since List.foldr/3 processes the list from right to left, the final list order will match the original list without reversing.
-* When it encounters a nested list, it flattens that list recursively, appending the flattened sublist to the accumulator.
-* nil values are simply ignored by returning the accumulator acc as-is for them.
+- Since List.foldr/3 processes the list from right to left, the final list order will match the original list without reversing.
+- When it encounters a nested list, it flattens that list recursively, appending the flattened sublist to the accumulator.
+- nil values are simply ignored by returning the accumulator acc as-is for them.
 
 ```elixir
 defmodule FlattenArray3 do
@@ -154,8 +155,8 @@ IO.puts(Scrabble.score("Kevin"))
 
 Things I learned about through this challenge:
 
-* How to traverse a string character by character with graphemes()
-* What is a word sigil and using them to make an array of strings on the fly
+- How to traverse a string character by character with graphemes()
+- What is a word sigil and using them to make an array of strings on the fly
 
 ## Exercism exercise - Nucleotide Count
 
