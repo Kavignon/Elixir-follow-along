@@ -2,11 +2,19 @@
 
 Welcome to my **Elixir follow along**. This project allows me to share my snippets, my notes and observations regarding how I'm learning about Elixir, Phoenix, LiveView and BEAM in general. This is a Phoenix/LiveView project with a Livebook notebook alongside an interactive Livebook notebook to explore concepts in real time.
 
+Here's a quick button to run the livebook quickly in your browswer.
+
+[![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2FKavignon%2FElixir-follow-along%2Fblob%2Fmain%2Felixir_notes.livemd)
+
+Don't hesitate to look at the [FAQ](#faq) in cases of problems and if it doesn't help with your problem, you can always open a new issue on the repository.
+
 ## Project Overview
 
 This repository includes:
 - A Phoenix project with LiveView integration for real-time interactivity.
 - A Livebook notebook (`elixir.livemd`) with code snippets and explanations to guide you through key features.
+
+In the future, you'll be able to access:
 - A Livebook notebook (`phoenix.livemd`) with code snippets and explanations to guide you through key features.
 - A Livebook notebook (`liveview.livemd`) with code snippets and explanations to guide you through key features.
 
@@ -114,3 +122,29 @@ elixir-follow-along/
 ├── mix.exs                  # Mix project file with dependencies
 └── ...
 ```
+
+## FAQ
+
+I tried running your notebook in the browser but I received the following error message:
+
+> **Error:** (Code.LoadError) could not load 
+
+```plaintext
+** /Users/your-username/Library/Application Support/livebook/autosaved/2024_10_30/18_28_xyzd/lib/exercism/flatten_array_v2.ex. Reason: enoent
+    (elixir 1.17.3) lib/code.ex:2158: Code.find_file!/2
+    (elixir 1.17.3) lib/code.ex:1483: Code.require_file/2
+    #cell:vreqpqjctzkacxxa:6: (file)
+```
+
+When you open a Livebook notebook from a URL, it creates a temporary copy in your local file system (such as in autosaved), which is separate from the repository itself. Therefore, when Code.require_file/2 tries to load a file path like lib/exercism/flatten_array_v2.ex, it’s looking in the Livebook’s temporary directory rather than your actual repository.
+
+To fix that problem, we can mount the repository in Livebook.
+
+1. Mount a Local Folder in Livebook:
+   1. In Livebook’s interface, go to the sidebar, click on _Files_ and then _Add file_.
+   2. Provide the path to the livebook where the code resides locally.
+   3. Look at the name for the livebook to confirm it's the one that you want to add.
+   4. To make things simple, select the option _Store only file location_.
+   5. Click on _Add_.
+2. Reload your livebook server
+3. Go back on the snippet and evaluate it again. Things should be fixed. The Elixir snippets try to either run locally or from the mounted repository path.
