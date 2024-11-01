@@ -51,8 +51,8 @@ Progress tracking with visual indicators: Each year includes a progress table th
 1. Clone the repository:
 
 ```bash
-   git clone git@github.com:Kavignon/Elixir-follow-along.git
-   cd Elixir-follow-along
+   git clone git@github.com:Kavignon/Elixir-journey.git
+   cd Elixir-journey
 ```
 
 2. Install dependencies:
