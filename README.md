@@ -3,11 +3,11 @@
 <img src="https://github.com/user-attachments/assets/9ad650a1-5a9b-42ee-8b2c-c57b7e1d3862" alt="Repository logo" width="500" height="300">
 
 Welcome to the Elixir Journey repository! This project is central to my Elixir learning journey, covering:
-- [Advent of Code (AoC)](https://adventofcode.com),
-- [Exercism](https://exercism.org),
-- [Codewars](https://www.codewars.com),
-- [YouTube courses](https://youtube.com/playlist?list=PLPhmv8IZVge42oxrZajWBKwptcVMUnY3P&si=LWVOb35RWdt0_T0s),
-- [foundational reading on Elixir and the BEAM](https://www.manning.com/books/elixir-in-action-third-edition).
+- [Advent of Code (AoC)](https://adventofcode.com)
+- [Exercism](https://exercism.org)
+- [Codewars](https://www.codewars.com)
+- [YouTube courses](https://youtube.com/playlist?list=PLPhmv8IZVge42oxrZajWBKwptcVMUnY3P&si=LWVOb35RWdt0_T0s)
+- [foundational reading on Elixir and the BEAM](https://www.manning.com/books/elixir-in-action-third-edition)
 
 Using Livebook, I document each topic in interactive notebooks with solutions, notes, challenges I overcame, and resources for further exploration. This is my way of taking a more hands-on approach to using Phoenix/LiveView to assemble real-time software systems.
 
