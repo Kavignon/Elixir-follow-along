@@ -84,6 +84,7 @@ Don't hesitate to look at the [FAQ](#faq) in case of problems; if it doesn't hel
 ### In the browser
 
 Run the Livebook for my Exercism notes + observations using the button below!
+
 [![Run in Livebook](https://livebook.dev/badge/v1/black.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2FKavignon%2FElixir-journey%2Fblob%2Fmain%2Fexercism.livemd)
 
 ### In your local environment
