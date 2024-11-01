@@ -87,6 +87,14 @@ Run the Livebook for my Exercism notes + observations using the button below!
 
 [![Run in Livebook](https://livebook.dev/badge/v1/black.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2FKavignon%2FElixir-journey%2Fblob%2Fmain%2Fexercism.livemd)
 
+It'll bring you to the following URL:
+
+You'll see this in the browser:
+
+<img width="814" alt="image" src="https://github.com/user-attachments/assets/115729e7-79e7-48ce-9133-1b7bfaa797a9">
+
+You will want to click on _Run notebook_ and then _Allow_, and the livebook will run in your browser.
+
 ### In your local environment
 
 
