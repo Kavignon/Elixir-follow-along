@@ -2,7 +2,7 @@
 
 <img src="https://github.com/user-attachments/assets/9ad650a1-5a9b-42ee-8b2c-c57b7e1d3862" alt="Repository logo" width="500" height="300">
 
-Welcome to the Livebook learning experiments repository! This project is central to my Elixir learning journey, covering:
+Welcome to the Elixir Journey repository! This project is central to my Elixir learning journey, covering:
 - [Advent of Code (AoC)](https://adventofcode.com),
 - [Exercism](https://exercism.org),
 - [Codewars](https://www.codewars.com),
@@ -18,8 +18,8 @@ Using Livebook, I document each topic in interactive notebooks with solutions, n
    - [Prerequisites](#prerequisites)
    - [Installation](#installation-steps)
 - [Usage instructions](#usage-instructions)
-   - [Livebook setup](#livebook-setup)
-   - [Running Livebook Notebooks](#running-livebook-notebooks)
+   - [In the browser](#in-the-browser)
+   - [In your local environment](#in-your-local-environment)
 - [Automations](#automations)
    - [Protected artifacts verification](#protected-artifacts-verification)
    - [Scheduled updates](#scheduled-updates)
@@ -79,9 +79,18 @@ For instance, if you're using ZSH as a shell, you'll use a text editor (i.e., VI
 
 Don't hesitate to look at the [FAQ](#faq) in case of problems; if it doesn't help with your problem, you can always open a new issue on the repository.
 
+## Usage instructions
+
+### In the browser
+
+Run the Livebook for my Exercism notes + observations using the button below!
+[![Run in Livebook](https://livebook.dev/badge/v1/black.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2FKavignon%2FElixir-journey%2Fblob%2Fmain%2Fexercism.livemd)
+
+### In your local environment
+
 ## FAQ
 
-I tried running your notebook in the browser, but I received the following error message:
+_I tried running your notebook in the browser, but I received the following error message_:
 
 > **Error:** (Code.LoadError) could not load 
 
