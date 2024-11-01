@@ -92,26 +92,4 @@ Run the Livebook for my Exercism notes + observations using the button below!
 
 ## FAQ
 
-_I tried running your notebook in the browser, but I received the following error message_:
-
-> **Error:** (Code.LoadError) could not load 
-
-```plaintext
-** /Users/your-username/Library/Application Support/livebook/autosaved/2024_10_30/18_28_xyzd/lib/exercism/flatten_array_v2.ex. Reason: enoent
-    (elixir 1.17.3) lib/code.ex:2158: Code.find_file!/2
-    (elixir 1.17.3) lib/code.ex:1483: Code.require_file/2
-    #cell:vreqpqjctzkacxxa:6: (file)
-```
-
-When you open a Livebook notebook from a URL, it creates a temporary copy in your local file system (such as in autosaved), which is separate from the repository itself. Therefore, when Code.require_file/2 tries to load a file path like lib/exercism/flatten_array_v2.ex, it’s looking in the Livebook’s temporary directory rather than your actual repository.
-
-To fix that problem, we can mount the repository in Livebook.
-
-1. Mount a Local Folder in Livebook:
-   1. In Livebook’s interface, go to the sidebar, click on _Files_ and then _Add file_.
-   2. Provide the path to the livebook where the code resides locally.
-   3. Look at the name for the livebook to confirm it's the one that you want to add.
-   4. select the option _Store only file location_to simplify things.
-   5. Click on _Add_.
-2. Reload your livebook server
-3. Go back on the snippet and evaluate it again. Things should be fixed. The Elixir snippets try to either run locally or from the mounted repository path.
+Read more [here](https://github.com/Kavignon/Elixir-journey/wiki/FAQ)
