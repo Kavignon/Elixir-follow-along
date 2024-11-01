@@ -9,7 +9,7 @@ Welcome to the Elixir Journey repository! This project is central to my Elixir l
 - [YouTube courses](https://youtube.com/playlist?list=PLPhmv8IZVge42oxrZajWBKwptcVMUnY3P&si=LWVOb35RWdt0_T0s)
 - [foundational reading on Elixir and the BEAM](https://www.manning.com/books/elixir-in-action-third-edition)
 
-Using Livebook, I document each topic in interactive notebooks with solutions, notes, challenges I overcame, and resources for further exploration. This is my way of taking a more hands-on approach to using Phoenix/LiveView to assemble real-time software systems.
+Using Livebook, I document each topic in interactive notebooks with solutions, notes, challenges I overcame, and resources for further exploration. This is my way of taking a more hands-on approach to using Elixir/Phoenix/LiveView design and implement robust software solutions.
 
 ## Table of Contents
 
@@ -87,6 +87,7 @@ Run the Livebook for my Exercism notes + observations using the button below!
 [![Run in Livebook](https://livebook.dev/badge/v1/black.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2FKavignon%2FElixir-journey%2Fblob%2Fmain%2Fexercism.livemd)
 
 ### In your local environment
+
 
 ## FAQ
 
