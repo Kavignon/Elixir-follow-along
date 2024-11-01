@@ -97,6 +97,20 @@ You will want to click on _Run notebook_ and then _Allow_, and the livebook will
 
 ### In your local environment
 
+1. Start the Livebook server:
+
+```bash
+livebook server
+```
+
+2. Open the provided URL (usually http://localhost:8080?token=yourtokenvalue) in your browser.
+3. In Livebook, click _Open_
+4. Select the option _From storage_ and provide the path to elixir_notes.livemd from the repository folder to open the notebook.
+
+You can also do the following after running ```livebook server```:
+1. Click on _Open_.
+2. Select the option _From URL_ and provide the URL to one of the Elixir livebook notes from the repository such as this [one](https://github.com/Kavignon/Elixir-journey/blob/main/exercism.livemd) in _Notebook URL_
+3. Click on _Import_.
 
 ## FAQ
 
