@@ -20,9 +20,6 @@ Using Livebook, I document each topic in interactive notebooks with solutions, n
 - [Usage instructions](#usage-instructions)
    - [In the browser](#in-the-browser)
    - [In your local environment](#in-your-local-environment)
-- [Automations](#automations)
-   - [Protected artifacts verification](#protected-artifacts-verification)
-   - [Scheduled updates](#scheduled-updates)
 - [FAQ](#faq)
 
 ## Key features
