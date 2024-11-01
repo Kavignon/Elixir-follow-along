@@ -1,4 +1,4 @@
-# Exploring full-stack Elixir development
+# Picking up Elixir through Exercism
 
 ## Day 1
 
