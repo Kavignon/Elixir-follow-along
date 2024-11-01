@@ -1,6 +1,67 @@
-# Elixir follow along
+# Livebook learning experiments
 
-Welcome to my **Elixir follow along**. This project allows me to share my snippets, my notes and observations regarding how I'm learning about Elixir, Phoenix, LiveView and BEAM in general. This is a Phoenix/LiveView project with a Livebook notebook alongside an interactive Livebook notebook to explore concepts in real time.
+Welcome to the Livebook learning experiments repository! This project is central to my Elixir learning journey, covering:
+- [Advent of Code (AoC)](https://adventofcode.com),
+- [Exercism](https://exercism.org),
+- [Codewars](https://www.codewars.com),
+- [YouTube courses](https://youtube.com/playlist?list=PLPhmv8IZVge42oxrZajWBKwptcVMUnY3P&si=LWVOb35RWdt0_T0s),
+- [foundational reading on Elixir and the BEAM](https://www.manning.com/books/elixir-in-action-third-edition).
+
+Using Livebook, I document each topic in interactive notebooks with solutions, notes, challenges I overcame, and resources for further exploration. This is my way of taking a more hands-on approach to using Phoenix/LiveView to assemble real-time software systems.
+
+## Table of Contents
+
+- [Key features](#key-features)
+- [Local setup](#local-setup)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+- [Usage Instructions](#usage-instructions)
+   - [Livebook setup](#livebook-setup)
+   - [Running Livebook Notebooks](#running-livebook-notebooks)
+- [Automations](#automations)
+   - [Protected artifacts verification](#protected-artifacts-verification)
+   - [Scheduled updates](#scheduled-updates)
+- [FAQ](#faq)
+
+## Key Features
+
+- Individual notebooks per subject: Separate notebooks for Advent of Code, Exercism, Codewars, and reading resources, each with solutions, explanations, and detailed notes.
+- Protected code artifacts integrity: The CI blocks merging or pushing to main if any new scripts used in the notebooks aren’t listed as protected artifacts, maintaining consistency across Livebooks.
+- Comprehensive CI pipeline: A GitHub Actions pipeline enforces code quality, security checks, and protected artifact verification, ensuring all notebooks reference the correct, up-to-date scripts.
+- Live test results in notebooks: As each module is evaluated in Livebook, unit tests are run with results displayed in-line, showing pass/fail indicators for immediate feedback.
+
+For the Livebook for solutions and notes for the AoC, you can expect these features:
+- Dynamic year selection: Switch between years in the Advent of Code notebook, viewing solutions, daily progress, and notes for each year. A dropdown control dynamically renders data, including a daily progress table with visual indicators.
+Progress tracking with visual indicators: Each year includes a progress table that uses symbols like "⭐⭐" for completed days, "⭐" when I completed 1 of 2 parts, and "❌" when I didn't complete any parts for that day. This makes it easy to see my progression at a glance.
+- Caching system: Cached AoC data minimizes requests to AoC’s website, reducing redundant calls and ensuring the Livebook loads quickly with current data.
+- Scheduled data updates: GitHub Actions automatically updates AoC progress data weekly (or daily during December), keeping tables current without manual intervention.
+
+## Local setup
+
+### Prerequisites
+
+[Elixir](https://elixir-lang.org): The language runtime.
+[Livebook](https://livebook.dev): For interactive notebooks.
+[Phoenix](https://phoenixframework.org) (optional): If Phoenix-based content is added in future update.
+
+### Installation steps
+
+1. Clone the repository:
+
+```bash
+   git clone git@github.com:Kavignon/Elixir-follow-along.git
+   cd Elixir-follow-along
+```
+
+Install Dependencies:
+bash
+Copy code
+mix deps.get
+Install Livebook:
+bash
+Copy code
+mix escript.install hex livebook
+After installation, ensure ~/.mix/escripts is in your PATH if prompted.
 
 Here's a quick button to run the livebook quickly in your browswer.
 
